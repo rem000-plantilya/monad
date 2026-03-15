@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONAD — Hyper-Real AI Studio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <link href="src/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
@@ -13,7 +14,7 @@
             --neon-cyan: #00f5ff;
             --neon-violet: #8b00ff;
         }
-        
+
         body {
             font-family: 'Inter', system_ui, sans-serif;
         }
@@ -95,12 +96,18 @@
         }
 
         #gallery-modal img {
+            height: 90vh;
             transition: transform 0.4s ease;
         }
 
         #gallery-modal img:hover {
             transform: scale(1.02);
         }
+
+        .card:hover .overlay {
+            opacity: 0;
+            transition: opacity 0.7s;
+        }        
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
@@ -118,7 +125,7 @@
                 <a href="#gallery" class="hover:text-cyan-400 transition-colors">Gallery</a>
                 <a href="#audio" class="hover:text-cyan-400 transition-colors">Soundscape</a>
                 <a href="#price" class="hover:text-cyan-400 transition-colors">$ Pricing</a>
-                <a href="#team" class="hover:text-cyan-400 transition-colors">Team</a>
+                <a href="#team" class="hover:text-cyan-400 transition-colors">About Us</a>
             </div>
         </div>
     </nav>
@@ -147,12 +154,7 @@
                         EXPLORE GALLERY
                         <i class="fas fa-arrow-right"></i>
                     </a>
-           
-                    <button 
-                            class="px-10 py-5 border-2 border-white/70 hover:border-cyan-400 rounded-3xl font-semibold text-lg transition-all">
-                            <a href="mailto:info@monaddigital.art">Message Us</a>
-                        
-                    </button>
+                    <a href="mailto:info@monaddigital.art" class="px-10 py-5 border-2 border-white/70 hover:border-cyan-400 rounded-3xl font-semibold text-lg transition-all">Message Us</a>
                 </div>
 
                 <div class="mt-16 flex items-center gap-8 text-xs uppercase tracking-widest">
@@ -184,7 +186,7 @@
     </header>
 
     <!-- FEATURES -->
-    <section id="features" class="py-32 bg-zinc-950">
+    <section id="features" class="scroll-mt-24 py-10 bg-zinc-950">
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-20">
                 <span class="px-6 py-2 bg-white/5 text-cyan-400 text-sm rounded-3xl">POWERFUL BEYOND BELIEF</span>
@@ -238,40 +240,49 @@
             </div>
         </div>
     </section>
+  
 
     <!-- LIVE DEMO TEASER -->
-    <section class="py-24 bg-black border-y border-white/10">
+    <section class="py-10 bg-black border-y border-white/10">
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <div class="text-cyan-400 uppercase tracking-widest text-sm mb-4">BEFORE → AFTER</div>
-                    <h2 class="text-5xl font-bold logo-font tracking-tighter">One click.<br>Hyper-real transformation.</h2>
+                    <h2 class="text-5xl font-bold logo-font tracking-tighter">Hyper-real transformation.</h2>
                     <p class="mt-8 text-xl text-gray-400">Watch Monad turn a simple sketch into a cinematic 4K-8K masterpiece.</p>
                     
-                    <button onclick="showDemoModal()" 
+                    <!-- <button onclick="showDemoModal()" 
                             class="mt-12 px-10 py-5 border border-cyan-400 hover:bg-cyan-400 hover:text-black rounded-3xl font-medium flex items-center gap-4 group">
                         <span>PLAY 12-SECOND DEMO</span>
                         <div class="w-4 h-4 border-2 border-current border-r-transparent rounded-full animate-spin group-hover:animate-none"></div>
-                    </button>
+                    </button> -->
                 </div>
 
-                <div class="relative rounded-3xl overflow-hidden scanline shadow-2xl border border-white/20">
-                    <img src="https://picsum.photos/id/1016/1200/800" alt="Input" class="w-full">
-                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="inline-block px-8 py-3 bg-black/70 rounded-3xl text-xs tracking-widest mb-4">MONAD AI ENGINE</div>
-                            <div class="text-4xl font-bold logo-font text-cyan-400">GENERATING...</div>
-                        </div>
-                    </div>
-                    <img src="https://picsum.photos/id/201/1200/800" alt="Output" 
-                         class="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition-all duration-700">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 w-full max-w-md mx-auto group">
+                
+                <!-- Input Image -->
+                <img src="https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w500"
+                    alt="Input"
+                    class="w-full h-full object-cover">
+
+                <!-- Output Image (Hidden initially) -->
+                <img src="https://lh3.googleusercontent.com/d/1d__e4zDxn_MBUn9-bGN0gUf4A1rsexTY=w2000"
+                    alt="Output"
+                    class="absolute inset-0 w-full h-full object-cover opacity-0 scale-95 transition-all duration-700 group-hover:opacity-100 group-hover:scale-100 z-10">
+
+                <!-- Overlay Text -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transition-opacity duration-700 group-hover:opacity-0 z-20">
+                    <div class="px-6 py-2 bg-black/70 rounded-3xl text-xs tracking-widest mb-3">MONAD AI ENGINE</div>
+                    <div class="text-4xl font-bold text-cyan-400 logo-font drop-shadow-[0_0_10px_rgba(0,255,255,0.7)]">GENERATING...</div>
+                </div>
+
                 </div>
             </div>
         </div>
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" class="py-32 bg-zinc-950">
+    <section id="gallery" class="scroll-mt-24 py-10 bg-zinc-950">
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex justify-between items-end mb-12">
                 <div>
@@ -288,7 +299,7 @@
     </section>
 
     <!-- AUDIO SECTION -->
-    <section id="audio" class="py-32 relative bg-black">
+    <section id="audio" class="scroll-mt-24 py-10 relative bg-black">
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-16">
                 <div class="flex justify-center gap-2 mb-6">
@@ -312,7 +323,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-1" class="hidden" src="./audio/monad v1.mp3"></audio>
+                    <audio id="audio-1" class="hidden" src="src/Monad.mp3"></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-cyan-400 w-1/3 rounded-full"></div>
                     </div>
@@ -322,7 +333,7 @@
                 <div class="glass rounded-3xl p-8">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-cyan-400 text-sm">02 • Monad Sound 2</div>
+                            <div class="text-cyan-400 text-sm">02 • Heartbeat Rush</div>
                             <div class="text-2xl font-semibold mt-1">Touch of voice</div>
                         </div>
                         <button onclick="toggleAudio(2)" id="play-btn-2"
@@ -330,7 +341,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-2" class="hidden" src="./audio/monad v2.mp3"></audio>
+                    <audio id="audio-2" class="hidden" src="src/Heartbeat Rush.mp3" autoplay="true"></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-violet-500 w-2/3 rounded-full"></div>
                     </div>
@@ -340,7 +351,7 @@
                 <div class="glass rounded-3xl p-8">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-cyan-400 text-sm">03 • HYPER DETAIL</div>
+                            <div class="text-cyan-400 text-sm">03 • Galactic</div>
                             <div class="text-2xl font-semibold mt-1">Infinite Detail</div>
                         </div>
                         <button onclick="toggleAudio(3)" id="play-btn-3"
@@ -348,7 +359,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-3" class="hidden" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"></audio>
+                    <audio id="audio-3" class="hidden" src="src/galactic.mp3"></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-emerald-400 w-1/2 rounded-full"></div>
                     </div>
@@ -358,152 +369,173 @@
     </section>
 
     <!-- PRICING SECTION - NEW -->
-<section id="price" class="py-32 bg-gradient-to-b from-zinc-950 to-black relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20 pointer-events-none">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-violet-900/10 to-transparent"></div>
-    </div>
-    <div class="max-w-7xl mx-auto px-8 relative z-10">
-        <div class="text-center mb-16">
-            <span class="px-6 py-2 bg-white/5 text-cyan-400 text-sm rounded-3xl uppercase tracking-widest">Choose Your Creative Freedom</span>
-            <h2 class="text-6xl md:text-7xl font-bold logo-font tracking-tighter mt-6 neon-text">Simple. Powerful. No Lock-ins.</h2>
+    <section id="price" class="scroll-mt-24 py-10 bg-gradient-to-b from-zinc-950 to-black relative overflow-hidden">
+        <!-- Background gradients -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-violet-900/10 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+            <!-- Section header -->
+            <div class="text-center mb-16">
+            <span class="px-6 py-2 bg-white/5 text-cyan-400 text-sm rounded-3xl uppercase tracking-widest">
+                Choose Your Creative Freedom
+            </span>
+            <h2 class="text-6xl md:text-7xl font-bold logo-font tracking-tighter mt-6 neon-text">
+                Simple. Powerful. No Lock-ins.
+            </h2>
             <p class="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
                 No bond, no contracts — just pure hyper-real creation. Start strong with our Launch Promo.
             </p>
-        </div>
+            </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Free / Promo Tier -->
-            <div class="glass rounded-3xl p-8 md:p-10 border border-cyan-500/30 hover:border-cyan-400 transition-all card-hover group">
-                <div class="text-center mb-6">
-                    <div class="text-4xl font-bold logo-font mb-2">Launch Promo</div>
-                    <div class="text-5xl font-black text-cyan-400">Free</div>
-                    <div class="text-sm text-gray-400 mt-1">First Month Only</div>
-                </div>
-                <ul class="space-y-4 text-lg mb-8">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 15 hyper-real images</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 15 total minutes of AI music</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> No credit card required</li>
-                </ul>
-                <a href="mailto:info@monaddigital.art?subject=Start%20Free%20Promo" 
-                   class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-2xl font-semibold hover:scale-105 transition-all">
+            <!-- Pricing grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+                <!-- Launch Promo -->
+                <div class="flex flex-col h-full glass rounded-3xl p-8 md:p-10 border border-cyan-500/30 hover:border-cyan-400 transition-all card-hover group">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl font-bold logo-font mb-2">Launch Promo</div>
+                        <div class="text-5xl font-black text-cyan-400">Free</div>
+                        <div class="text-sm text-gray-400 mt-1">First Month Only</div>
+                    </div>
+                    <ul class="space-y-4 text-lg flex-1">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 15 hyper-real images</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 15 total minutes of AI music</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> No credit card required</li>
+                    </ul>
+                    <a href="mailto:info@monaddigital.art?subject=Start%20Free%20Promo" 
+                    class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-2xl font-semibold hover:scale-105 transition-all mt-auto">
                     Get Started Free →
-                </a>
-            </div>
-
-            <!-- Basic -->
-            <div class="glass rounded-3xl p-8 md:p-10 border border-white/20 hover:border-violet-400 transition-all card-hover group">
-                <div class="text-center mb-6">
-                    <div class="text-4xl font-bold logo-font mb-2">Basic</div>
-                    <div class="text-5xl font-black text-violet-400">$25<span class="text-xl font-normal">/mo</span></div>
+                    </a>
                 </div>
-                <ul class="space-y-4 text-lg mb-8">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 30 hyper-real images</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 30 total minutes of AI music</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Standard support</li>
-                </ul>
-                <!-- <button class="block w-full py-4 bg-violet-600/80 hover:bg-violet-500 rounded-2xl font-semibold transition-all opacity-70 cursor-not-allowed">
-                    Coming Soon
-                </button> -->
-                <a href="mailto:info@monaddigital.art?subject=Upgrade%20to%20Free%20Trial" 
-                   class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-violet-600 rounded-2xl font-semibold hover:scale-105 transition-all">
+
+                <!-- Basic -->
+                <div class="flex flex-col h-full glass rounded-3xl p-8 md:p-10 border border-white/20 hover:border-violet-400 transition-all card-hover group">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl font-bold logo-font mb-2">Basic</div>
+                        <div class="text-5xl font-black text-violet-400">$25<span class="text-xl font-normal">/mo</span></div>
+                    </div>
+                    <ul class="space-y-4 text-lg flex-1">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 30 hyper-real images</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 30 total minutes of AI music</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Standard support</li>
+                    </ul>
+                    <a href="mailto:info@monaddigital.art?subject=Upgrade%20to%20Basic" 
+                    class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-violet-600 rounded-2xl font-semibold hover:scale-105 transition-all mt-auto">
+                    Choose Basic →
+                    </a>
+                </div>
+
+                <!-- Standard -->
+                <div class="flex flex-col h-full glass rounded-3xl p-8 md:p-10 border-2 border-cyan-400/50 hover:border-cyan-400 transition-all card-hover group relative overflow-hidden">
+                    <div class="absolute -top-4 right-6 bg-cyan-500 text-black text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
+                    <div class="text-center mb-6">
+                        <div class="text-4xl font-bold logo-font mb-2">Standard</div>
+                        <div class="text-5xl font-black text-cyan-400">$100<span class="text-xl font-normal">/mo</span></div>
+                    </div>
+                    <ul class="space-y-4 text-lg flex-1">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 100 hyper-real images</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 100 total minutes of AI music</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Dedicated support channel</li>
+                    </ul>
+                    <a href="mailto:info@monaddigital.art?subject=Upgrade%20to%20Standard" 
+                    class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-violet-600 rounded-2xl font-semibold hover:scale-105 transition-all mt-auto">
                     Choose Standard →
-                </a>
-            </div>
-
-            <!-- Standard -->
-            <div class="glass rounded-3xl p-8 md:p-10 border-2 border-cyan-400/50 hover:border-cyan-400 transition-all card-hover group relative overflow-hidden">
-                <div class="absolute -top-4 right-6 bg-cyan-500 text-black text-xs font-bold px-4 py-1 rounded-full">Most Popular</div>
-                <div class="text-center mb-6">
-                    <div class="text-4xl font-bold logo-font mb-2">Standard</div>
-                    <div class="text-5xl font-black text-cyan-400">$100<span class="text-xl font-normal">/mo</span></div>
+                    </a>
                 </div>
-                <ul class="space-y-4 text-lg mb-8">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 100 hyper-real images</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> 100 total minutes of AI music</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Dedicated support channel</li>
-                </ul>
-                <a href="mailto:info@monaddigital.art?subject=Upgrade%20to%20Standard" 
-                   class="block text-center py-4 bg-gradient-to-r from-cyan-600 to-violet-600 rounded-2xl font-semibold hover:scale-105 transition-all">
-                    Choose Standard →
-                </a>
-            </div>
 
-            <!-- Premium -->
-            <div class="glass rounded-3xl p-8 md:p-10 border border-violet-500/50 hover:border-violet-400 transition-all card-hover group bg-gradient-to-br from-violet-950/30 to-black">
-                <div class="text-center mb-6">
-                    <div class="text-4xl font-bold logo-font mb-2">Premium</div>
-                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">$1000<span class="text-xl font-normal">/mo</span></div>
-                </div>
-                <ul class="space-y-4 text-lg mb-8">
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> <strong>Unlimited</strong> images</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> <strong>Unlimited</strong> AI music minutes</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Priority feature access & custom requests</li>
-                </ul>
-                <a href="mailto:info@monaddigital.art?subject=Go%20Unlimited%20Premium" 
-                   class="block text-center py-4 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-2xl font-semibold hover:scale-105 transition-all">
+                <!-- Premium -->
+                <div class="flex flex-col h-full glass rounded-3xl p-8 md:p-10 border border-violet-500/50 hover:border-violet-400 transition-all card-hover group bg-gradient-to-br from-violet-950/30 to-black">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl font-bold logo-font mb-2">Premium</div>
+                        <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">$1000<span class="text-xl font-normal">/mo</span></div>
+                    </div>
+                    <ul class="space-y-4 text-lg flex-1">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> <strong>Unlimited</strong> images</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> <strong>Unlimited</strong> AI music minutes</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-emerald-400"></i> Priority feature access & custom requests</li>
+                    </ul>
+                    <a href="mailto:info@monaddigital.art?subject=Go%20Unlimited%20Premium" 
+                    class="block text-center py-4 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-2xl font-semibold hover:scale-105 transition-all mt-auto">
                     Unlock Unlimited →
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="text-center mt-12 text-gray-400 text-sm">
+            <!-- Footer note -->
+            <div class="text-center mt-12 text-gray-400 text-sm">
             All plans include full access to Image-to-Image, Text-to-Image, Precision Editing, and 4K–8K native output.<br>
             Cancel anytime. First month promo available.
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ASPECT RATIOS SECTION - NEW -->
-<section id="aspect-ratios" class="py-32 bg-zinc-950">
-    <div class="max-w-7xl mx-auto px-8">
-        <div class="text-center mb-16">
-            <span class="px-6 py-2 bg-white/5 text-violet-400 text-sm rounded-3xl">Flexible Creation</span>
-            <h2 class="text-6xl font-bold logo-font tracking-tighter mt-6">Supported Aspect Ratios</h2>
-            <p class="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
-                Generate in the perfect format — from square social posts to cinematic ultrawide masterpieces.
-            </p>
-        </div>
+    <!-- ASPECT RATIOS SECTION - NEW -->
+    <section id="aspect-ratios" class="py-10 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <span class="px-6 py-2 bg-white/5 text-violet-400 text-sm rounded-3xl">Flexible Creation</span>
+                <h2 class="text-6xl font-bold logo-font tracking-tighter mt-6">Supported Aspect Ratios</h2>
+                <p class="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
+                    Generate in the perfect format — from square social posts to cinematic ultrawide masterpieces.
+                </p>
+            </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <!-- Use the best matching images from search results -->
-            <figure class="glass rounded-3xl overflow-hidden shadow-2xl">
-                <img src="https://timtrottphotography.com/images/2023/11/aspect-ratios-comparisons.jpg" alt="Aspect ratio comparison on landscape photo showing 1:1, 4:3, 3:2, 16:9 overlays" class="w-full h-auto">
-                <figcaption class="p-6 text-center text-gray-300">
-                    Visual crop comparison: 1:1 (square), 4:3 (classic), 3:2 (DSLR/photo), 16:9 (widescreen)
-                </figcaption>
-            </figure>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Use the best matching images from search results -->
+                <figure class="glass rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/d/1IrRvtGBe4eeiHR4mWm9PHa8TEn8RyF9S=w500" alt="Aspect ratio comparison on landscape photo showing 1:1, 4:3, 3:2, 16:9 overlays" class="w-full h-auto">
+                    <figcaption class="p-6 text-center text-gray-300">
+                        Visual crop comparison: 1:1 (square), 4:3 (classic), 3:2 (DSLR/photo), 16:9 (widescreen)
+                    </figcaption>
+                </figure>
 
-            <figure class="glass rounded-3xl overflow-hidden shadow-2xl">
-                <img src="https://prod.cloudfront.making.unsw.edu.au/images/Screen_Shot_2022-09-29_at_9.53.55_am.original.png" alt="Display aspect ratios snapshot including 3:2, 4:3, 16:9, 2.35:1" class="w-full h-auto">
-                <figcaption class="p-6 text-center text-gray-300">
-                    Common formats at a glance: 3:2 (DSLR), 4:3 (video), 16:9 (HD), 2.35:1 (cinemascope)
-                </figcaption>
-            </figure>
+                <figure class="glass rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="https://lh3.googleusercontent.com/d/1NnR_mz4sZmZy6TzSJOGLlCUxOl_5vtqX=w500" alt="Display aspect ratios snapshot including 3:2, 4:3, 16:9, 2.35:1" class="w-full h-auto">
+                    <figcaption class="p-6 text-center text-gray-300">
+                        Common formats at a glance: 3:2 (DSLR), 4:3 (video), 16:9 (HD), 2.35:1 (cinemascope)
+                    </figcaption>
+                </figure>
 
-            <figure class="glass rounded-3xl overflow-hidden shadow-2xl md:col-span-2 lg:col-span-1">
-                <img src="https://www.muvi.com/wp-content/uploads/2021/11/video-aspect-ratios.jpg" alt="Different aspect ratios visual guide with device examples" class="w-full h-auto">
-                <figcaption class="p-6 text-center text-gray-300">
-                    From 3:2 photography to 16:9 HD and cinematic 2.35:1 — choose your vision
-                </figcaption>
-            </figure>
-        </div>
+                <figure class="glass rounded-3xl overflow-hidden shadow-2xl md:col-span-2 lg:col-span-1">
+                    <img src="https://lh3.googleusercontent.com/d/1BeV6dw_a0GgpL_R6rRhb75aGj7LpgJcN=w500" alt="Different aspect ratios visual guide with device examples" class="w-full h-auto">
+                    <figcaption class="p-6 text-center text-gray-300">
+                        From 3:2 photography to 16:9 HD and cinematic 2.35:1 — choose your vision
+                    </figcaption>
+                </figure>
+            </div>
 
         </div>
     </section>
 
     <!-- TEAM -->
-    <section id="team" class="py-32 bg-zinc-950">
+    <section id="team" class="scroll-mt-24 py-10 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-8 py-auto">
+            <div class="text-center mb-16">
+                <span class="px-6 py-2 bg-white/5 text-violet-400 text-sm rounded-3xl">Where AI meets cinematic 4K creativity.</span>
+                <h2 class="text-6xl font-bold logo-font tracking-tighter mt-6">The Company</h2>
+                <p class="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
+We are a creative technology studio specializing in AI-generated images and cinematic soundscapes. By combining advanced artificial intelligence with artistic direction, we create visually and audibly striking content that pushes the boundaries of digital creativity.
+<br/><br/>
+Our work emphasizes ultra-detailed 4K imagery, delivering stunning clarity, vibrant textures, and hyper-real visuals ideal for advertising, media, design, and immersive storytelling. Each frame and sound is crafted to captivate audiences and elevate the overall experience.
+From concept to final production, we transform ideas into powerful visual and auditory assets—helping brands, creators, and businesses bring their imagination to life through the power of AI.
+
+                </p>
+            </div>
+
+        </div>
+
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-16">
                 <span class="px-6 py-2 text-violet-400 bg-white/5 rounded-3xl text-sm">THE MINDS BEHIND MONAD</span>
                 <h2 class="text-6xl font-bold logo-font mt-6 tracking-tighter">Meet the team</h2>
             </div>
 
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-4">
                 <!-- CEO -->
                 <div class="group">
                     <div class="relative overflow-hidden rounded-3xl mb-6">
-                        <img src="./founder/2x2.png" alt="CEO" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="https://lh3.googleusercontent.com/d/1WnsYztrC378EkwJx49mEHwEKRgnnyIQs=w500" alt="CEO" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-8">
                             <div class="text-cyan-400 text-xs">Creative Director &amp; Founder</div>
@@ -516,7 +548,7 @@
                 <!-- President -->
                 <div class="group">
                     <div class="relative overflow-hidden rounded-3xl mb-6">
-                        <img src="https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-1/583697309_26266016129665064_7260757541218033266_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_ohc=mVRVUQqqvK4Q7kNvwGmrFkZ&_nc_oc=Adl5u1ZaDfhNrMMBSvOazNVClZSqsbhKpEs6oHWfm-8a7VbdtYS-dPDrOGB2gXqOecQ&_nc_zt=24&_nc_ht=scontent.fmnl30-2.fna&_nc_gid=dYM8bV4sXxbiRiLK9arD5A&_nc_ss=8&oh=00_Afy0p8mpuPtcAErH2-5QpIotdSSV_8tvUK3e6Ucl9m2A5w&oe=69BAEAAE" alt="President" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="https://lh3.googleusercontent.com/d/1Yzqhr450rRXcri5mo6QJg-eRjq9KqZkl=w500" alt="President" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <div class="absolute bottom-0 left-0 p-8">
                             <div class="text-cyan-400 text-xs">President</div>
@@ -527,7 +559,8 @@
                 </div>
 
                 <!-- CTO -->
-                <div class="group">
+                 <!-- Commented for now since its empty -->
+                <!-- <div class="group">
                     <div class="relative overflow-hidden rounded-3xl mb-6">
                         <img src="https://picsum.photos/id/201/800/800" alt="Co-founder/Accounting" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
@@ -537,7 +570,20 @@
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm">Experience in Accounting and auditing since 2014.</p>
-                </div>
+                </div> -->
+
+                <!-- Creative Director -->
+                <div class="group">
+                    <div class="relative overflow-hidden rounded-3xl mb-6">
+                        <img src="https://lh3.googleusercontent.com/d/14BGChWzM6tvsOFm32ziZi2Mub1tfyLXX=w500" alt="Creative Dir" class="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8">
+                            <div class="text-cyan-400 text-xs">Manager</div>
+                            <div class="text-3xl font-semibold">Jeffrey Rapirap</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm">Specializing in Prompt Engineering and AI Configuration.</p>
+                </div>                
 
                 <!-- Creative Director -->
                 <div class="group">
@@ -570,13 +616,13 @@
                 <span>CONTACT MONAD</span>
                 <span class="text-4xl group-hover:rotate-45 transition-transform">→</span>
             </a>
-            
-            <div class="mt-20 text-xs text-gray-600">© 2026 Monad Digital Design Services • All pixels reserved</div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="bg-black border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-8 text-center text-xs text-gray-500">© 2026 Monad Digital Design Services • All pixels reserved</div>
+
         <div class="max-w-7xl mx-auto px-8 text-center text-xs text-gray-500">
             email: info@monaddigital.art contact: (+63)9690901792
         </div>
@@ -603,151 +649,173 @@
     </div>
 
     <!-- GALLERY MODAL (added) -->
-<div id="gallery-modal" class="hidden fixed inset-0 bg-black/95 z-[1000] flex items-center justify-center transition-opacity duration-300">
-    <button onclick="closeGalleryModal()" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-cyan-400 transition-colors z-10">×</button>
-    
-    <div class="relative max-w-[90vw] max-h-[90vh] p-4">
-        <img id="modal-image" src="" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/20" alt="Enlarged gallery image">
+    <div id="gallery-modal" class="hidden fixed inset-0 bg-black/95 z-[1000] flex items-center justify-center transition-opacity duration-300">
+        <button onclick="closeGalleryModal()" class="absolute top-6 right-6 text-white text-5xl font-light hover:text-cyan-400 transition-colors z-10">×</button>
+
+        <div id="modal-loader"
+            class="absolute w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin">
+        </div>
+
+        <div class="relative max-w-max max-h-full p-4">
+            <img id="modal-image" src="" class="max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-white/20" alt="Enlarged gallery image">
+        </div>
     </div>
-</div>
 
-<!-- Updated script block (replace your entire <script> with this) -->
-<script>
-// Tailwind config (unchanged)
-tailwind.config = {
-    content: [],
-    theme: { extend: {} }
-};
+    <script src="mailer.js"></script>
+  
+    <!-- Updated script block (replace your entire <script> with this) -->
+    <script>
+    // Gallery images (unchanged)
+    const galleryImages = [
+        "https://lh3.googleusercontent.com/d/1xhqicrdY2aw1PrnohEOwbDcrl9bnN_dl=w2000",
+        "https://lh3.googleusercontent.com/d/1cr8FWCqK6X0Jh0fGHcXdotUhD22l5eGp=w2000",
+        "https://lh3.googleusercontent.com/d/1AUSgzf6rOefyIIKHOSXp77mvzh9GqC_y=w2000",
+        "https://lh3.googleusercontent.com/d/1BwSxH02ROpQR638BM2KW8HWQyUQ81DHR=w2000",
+        "https://lh3.googleusercontent.com/d/1nw41ixNaRAWaMI4q7RJhMmmPVPdD8GzP=w2000",
+        "https://lh3.googleusercontent.com/d/1a-SlFZI3qejs5iJkAU1GbSTY3qTzHvKI=w2000",
+        "https://lh3.googleusercontent.com/d/1Du2cNKOQYnkNMd-b4oW87G68O_-3CBur=w2000",
+        "https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w2000",
+    ];
 
-// Gallery images (unchanged)
-const galleryImages = [
-    "./gallery/1.png",
-    "./gallery/2.png",
-    "./gallery/3.png",
-    "./gallery/4.png",
-    "./gallery/5.png",
-    "./gallery/6.png",
-    "./gallery/7.png",
-    "./gallery/8.png",
-    "./gallery/9.png",
-    "./gallery/10.png",
-    "./gallery/11.png",
-];
+    function populateGallery() {
+        const grid = document.getElementById('gallery-grid');
 
-function populateGallery() {
-    const grid = document.getElementById('gallery-grid');
-    galleryImages.forEach(src => {
-        // Create elements manually instead of innerHTML → safer & easier to attach events
-        const div = document.createElement('div');
-        div.className = "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer";
+        galleryImages.forEach(src => {
+            const div = document.createElement('div');
+            div.className = "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer flex items-center justify-center";
 
-        const img = document.createElement('img');
-        img.src = src;
-        img.className = "w-full h-full object-cover gallery-img transition-all duration-500";
-        img.alt = "Gallery image";
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = "w-full h-full object-cover gallery-img transition-all duration-500 opacity-0";
+            img.alt = "Gallery image";
 
-        // Attach click listener directly to the img
-        img.addEventListener('click', () => {
-            openGalleryModal(src);
+            // Loading spinner
+            const spinner = document.createElement('div');
+            spinner.className = "absolute w-8 h-8 border-4 border-white/40 border-t-white rounded-full animate-spin";
+
+            // When image loads
+            img.addEventListener('load', () => {
+                spinner.remove();      // remove spinner
+                img.classList.remove('opacity-0'); // show image
+            });
+
+            // Open modal
+            div.addEventListener('click', () => {
+                openGalleryModal(src);
+            });
+
+            const overlay = document.createElement('div');
+            overlay.className = "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6";
+
+            const text = document.createElement('div');
+            text.className = "text-xs uppercase tracking-widest";
+            text.textContent = "4K • Hyper-Real • Click to enlarge";
+
+            overlay.appendChild(text);
+            div.appendChild(spinner); // add spinner first
+            div.appendChild(img);
+            div.appendChild(overlay);
+
+            grid.appendChild(div);
         });
-
-        const overlay = document.createElement('div');
-        overlay.className = "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6";
-
-        const text = document.createElement('div');
-        text.className = "text-xs uppercase tracking-widest";
-        text.textContent = "4K • Hyper-Real • Click to enlarge";
-
-        overlay.appendChild(text);
-        div.appendChild(img);
-        div.appendChild(overlay);
-
-        grid.appendChild(div);
-    });
-}
-
-// Modal functions
-function openGalleryModal(src) {
-    const modal = document.getElementById('gallery-modal');
-    const img = document.getElementById('modal-image');
-    
-    img.src = src;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    // Small delay for transition to work
-    setTimeout(() => modal.style.opacity = '1', 10);
-}
-
-function closeGalleryModal() {
-    const modal = document.getElementById('gallery-modal');
-    modal.style.opacity = '0';
-    setTimeout(() => {
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-        document.getElementById('modal-image').src = ''; // clear src
-    }, 300);
-}
-
-// Close on outside click
-document.getElementById('gallery-modal')?.addEventListener('click', function(e) {
-    if (e.target === this || e.target.id === 'modal-image') {
-        closeGalleryModal();
     }
-});
 
-// Close with Esc key
-document.addEventListener('keydown', e => {
-    if (e.key === "Escape") {
-        closeGalleryModal();
-        hideDemoModal(); // keep your existing demo close
+    // Modal functions
+    function openGalleryModal(src) {
+        const modal = document.getElementById('gallery-modal');
+        const img = document.getElementById('modal-image');
+        const loader = document.getElementById('modal-loader');
+
+        // Show loader and hide image
+        loader.classList.remove('hidden');
+        img.classList.add('opacity-0');
+
+        img.src = src;
+
+        img.onload = () => {
+            loader.classList.add('hidden'); // hide spinner
+            img.classList.remove('opacity-0'); // show image
+        };
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
     }
-});
 
-// Audio toggle (unchanged)
-let currentAudio = null;
-function toggleAudio(n) {
-    const audio = document.getElementById(`audio-${n}`);
-    const btn = document.getElementById(`play-btn-${n}`);
-    
-    if (currentAudio && currentAudio !== audio) {
-        currentAudio.pause();
-        document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
+    function closeGalleryModal() {
+        const modal = document.getElementById('gallery-modal');
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.getElementById('modal-image').src = ''; // clear src
+        }, 300);
     }
-    
-    if (audio.paused) {
-        audio.play();
-        btn.innerHTML = '<i class="fas fa-pause"></i>';
-        currentAudio = audio;
-    } else {
-        audio.pause();
-        btn.innerHTML = '<i class="fas fa-play"></i>';
-    }
-}
 
-// Your existing demo modal functions (unchanged)
-function showDemoModal() {
-    document.getElementById('demo-modal').classList.remove('hidden');
-    document.getElementById('demo-modal').classList.add('flex');
-}
-function hideDemoModal() {
-    document.getElementById('demo-modal').classList.add('hidden');
-    document.getElementById('demo-modal').classList.remove('flex');
-}
-
-// Init
-window.onload = () => {
-    populateGallery();
-    
-    // Easter egg (unchanged)
-    document.addEventListener('keypress', e => {
-        if (e.key.toLowerCase() === 'm') {
-            document.documentElement.style.setProperty('--neon-cyan', '#ff00ff');
-            setTimeout(() => {
-                document.documentElement.style.setProperty('--neon-cyan', '#00f5ff');
-            }, 300);
+    // Close on outside click
+    document.getElementById('gallery-modal')?.addEventListener('click', function(e) {
+        if (e.target === this || e.target.id === 'modal-image') {
+            closeGalleryModal();
         }
     });
-};
-</script>
+
+    // Close with Esc key
+    document.addEventListener('keydown', e => {
+        if (e.key === "Escape") {
+            closeGalleryModal();
+            hideDemoModal(); // keep your existing demo close
+        }
+    });
+
+    // Audio toggle (unchanged)
+    let currentAudio = null;
+    function toggleAudio(n) {
+        const audio = document.getElementById(`audio-${n}`);
+        const btn = document.getElementById(`play-btn-${n}`);
+        
+        if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+            document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
+        }
+        
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = '<i class="fas fa-pause"></i>';
+            currentAudio = audio;
+        } else {
+            audio.pause();
+            btn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    }
+
+    // Your existing demo modal functions (unchanged)
+    function showDemoModal() {
+        document.getElementById('demo-modal').classList.remove('hidden');
+        document.getElementById('demo-modal').classList.add('flex');
+    }
+    function hideDemoModal() {
+        document.getElementById('demo-modal').classList.add('hidden');
+        document.getElementById('demo-modal').classList.remove('flex');
+    }
+
+    // Init
+    window.onload = () => {
+        populateGallery();
+        
+        // Easter egg (unchanged)
+        document.addEventListener('keypress', e => {
+            if (e.key.toLowerCase() === 'm') {
+                document.documentElement.style.setProperty('--neon-cyan', '#ff00ff');
+                setTimeout(() => {
+                    document.documentElement.style.setProperty('--neon-cyan', '#00f5ff');
+                }, 300);
+            }
+        });
+    };
+    
+    </script>
 </body>
 </html>
