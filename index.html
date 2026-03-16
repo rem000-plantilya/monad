@@ -110,6 +110,34 @@
             opacity: 0;
             transition: opacity 0.7s;
         }        
+
+       @keyframes autoReveal {
+        0%    { opacity: 0; }     /* start with before visible */
+        12%   { opacity: 0; }     /* delay before fade-in */
+        25%   { opacity: 1; }     /* fade in after image */
+        55%   { opacity: 1; }     /* hold after image visible */
+        68%   { opacity: 0; }     /* fade out after image */
+        100%  { opacity: 0; }     /* back to before – long hold */
+        }
+
+        .animate-autoReveal {
+        animation: autoReveal 12s infinite ease-in-out;
+        }
+
+        @keyframes overlayFade {
+        0%    { opacity: 1; }     /* visible on before */
+        12%   { opacity: 1; }
+        25%   { opacity: 0; }     /* fade out together with after-image fade-in */
+        55%   { opacity: 0; }     /* stay hidden while after is visible */
+        68%   { opacity: 0; }
+        100%  { opacity: 1; }     /* fade back in when returning to before */
+        }
+
+        .animate-overlayFade {
+        animation: overlayFade 12s infinite ease-in-out;
+        transition: opacity 0.8s ease; /* smooth in case of hover etc. */
+        }
+
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
@@ -260,25 +288,29 @@
                     </button> -->
                 </div>
 
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 w-full max-w-md mx-auto group">
-                
-                <!-- Input Image -->
-                <img src="https://lh3.googleusercontent.com/d/1YDiahZikFk_qYk7M8UNRlLhV9HMwK9mK=w500"
-                    alt="Input"
-                    class="w-full h-full object-cover">
 
-                <!-- Output Image (Hidden initially) -->
-                <img src="https://lh3.googleusercontent.com/d/1R02-567zrKieVH3JqHcKXjvoyWzUNPgB=w2000"
-                    alt="Output"
-                    class="absolute inset-0 w-full h-full object-cover opacity-0 scale-95 transition-all duration-700 group-hover:opacity-100 group-hover:scale-100 z-10">
+              <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 w-full max-w-md mx-auto">
 
-                <!-- Overlay Text -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transition-opacity duration-700 group-hover:opacity-0 z-20">
-                    <!-- <div class="px-6 py-2 bg-black/70 rounded-3xl text-xs tracking-widest mb-3">MONAD AI ENGINE</div> -->
-                    <div class="text-4xl font-bold text-cyan-400 logo-font drop-shadow-[0_0_10px_rgba(0,255,255,0.7)]">Reimagining...</div>
+            <!-- Always-visible input (before) image -->
+            <img src="https://lh3.googleusercontent.com/d/1YDiahZikFk_qYk7M8UNRlLhV9HMwK9mK=w500"
+                alt="Before"
+                class="w-full h-auto object-cover">
+
+            <!-- Output (after) image – fades in & out -->
+            <img src="https://lh3.googleusercontent.com/d/1R02-567zrKieVH3JqHcKXjvoyWzUNPgB=w2000"
+                alt="After"
+                class="absolute inset-0 w-full h-full object-cover opacity-0 animate-autoReveal">
+
+            <!-- Overlay – only visible when before image is shown -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent pointer-events-none z-20 animate-overlayFade">
+                <div class="text-4xl font-bold text-cyan-400 logo-font drop-shadow-[0_0_12px_rgba(0,255,255,0.8)]">
+                Reimagining...
                 </div>
+            </div>
 
-                </div>
+            </div>
+
+
             </div>
         </div>
     </section>
@@ -325,7 +357,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-1" class="hidden" src="./src/Monad.mp3"></audio>
+                    <audio id="audio-1" class="hidden" src="./src/Monad.mp3" autoplay="true"></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-cyan-400 w-1/3 rounded-full"></div>
                     </div>
@@ -343,7 +375,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-2" class="hidden" src="./src/Heartbeat Rush.mp3" autoplay="true"></audio>
+                    <audio id="audio-2" class="hidden" src="./src/Heartbeat Rush.mp3" ></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-violet-500 w-2/3 rounded-full"></div>
                     </div>
