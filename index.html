@@ -138,6 +138,49 @@
         transition: opacity 0.8s ease; /* smooth in case of hover etc. */
         }
 
+
+        /* For the special #12 container */
+        [data-gallery-id="12"] {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5; /* keeps your current ratio */
+        }
+
+        [data-gallery-id="12"] .gallery-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out; /* smooth crossfade */
+        }
+
+        /* Auto-sequence fade for 4 images */
+        [data-gallery-id="12"] .img-1 { animation: fadeSeq 12s infinite; } /* 24s = 6s per image × 4 */
+        [data-gallery-id="12"] .img-2 { animation: fadeSeq 12s infinite 3s; }
+        [data-gallery-id="12"] .img-3 { animation: fadeSeq 12s infinite 6s; }
+        [data-gallery-id="12"] .img-4 { animation: fadeSeq 12s infinite 9s; }
+
+        @keyframes fadeSeq {
+            0%    { opacity: 0; }
+            4%    { opacity: 1; }   /* quick fade in */
+            21%   { opacity: 1; }   /* hold visible ~5s */
+            25%   { opacity: 0; }   /* fade out */
+            100%  { opacity: 0; }
+        }
+
+        /* Optional: Pause animation on hover (so user can admire current one) */
+        [data-gallery-id="12"]:hover .gallery-img {
+            animation-play-state: paused;
+        }
+
+        /* Keep your existing gallery hover scale/brightness, but toned down a bit for slideshow */
+        [data-gallery-id="12"] .gallery-img:hover {
+            transform: scale(1.04);
+            filter: brightness(1.1) contrast(1.1);
+        }
+
     </style>
 </head>
 <body class="bg-black text-white overflow-x-hidden">
@@ -724,69 +767,100 @@ Today, I'm driven to harness advanced AI to deliver hyper-realistic results that
     <script>
     // Gallery images (unchanged)
     const galleryImages = [
-        {url:"https://lh3.googleusercontent.com/d/10iyrOG69jypDmZwr784IOomhdnDKsPUI=w2000", label:"Artistic Style"},
-        {url:"https://lh3.googleusercontent.com/d/1a-SlFZI3qejs5iJkAU1GbSTY3qTzHvKI=w2000", label:"(Image Editing) An Existing Image to Reimagine"},
-        {url:"https://lh3.googleusercontent.com/d/1Du2cNKOQYnkNMd-b4oW87G68O_-3CBur=w2000", label:"Hyper-Real Photography"},
-        {url:"https://lh3.googleusercontent.com/d/1bYVle8MtzMinvG6xGWosVGr4etN62k0X=w2000", label:"Glass Flower"},
+        {id:1, url:"https://lh3.googleusercontent.com/d/10iyrOG69jypDmZwr784IOomhdnDKsPUI=w2000", label:"Artistic Style"},
+        {id:2, url:"https://lh3.googleusercontent.com/d/1a-SlFZI3qejs5iJkAU1GbSTY3qTzHvKI=w2000", label:"(Image Editing) An Existing Image to Reimagine"},
+        {id:3, url:"https://lh3.googleusercontent.com/d/1Du2cNKOQYnkNMd-b4oW87G68O_-3CBur=w2000", label:"Hyper-Real Photography"},
+        {id:4, url:"https://lh3.googleusercontent.com/d/1bYVle8MtzMinvG6xGWosVGr4etN62k0X=w2000", label:"Glass Flower"},
 
-        {url:"https://lh3.googleusercontent.com/d/1nw41ixNaRAWaMI4q7RJhMmmPVPdD8GzP=w2000", label:"(Image Editing) Reimagine an Existing Image"},
-        {url:"https://lh3.googleusercontent.com/d/10mMzx9oXDj1T7AZ9AD17vwcxp9U8GwRv=w2000", label:"Flexible art style"},
-        {url:"https://lh3.googleusercontent.com/d/1gNTi7Wv8hTZU56ZZOrWDKD6Ey71TrPWT=w2000", label:"Gothic Style"},
-        {url:"https://lh3.googleusercontent.com/d/1be57KD-u8SjcsjmoKcFS3_qdxxYKDR8B=w2000", label:"Artistic Style"},
+        {id:5, url:"https://lh3.googleusercontent.com/d/1nw41ixNaRAWaMI4q7RJhMmmPVPdD8GzP=w2000", label:"(Image Editing) Reimagine an Existing Image"},
+        {id:6, url:"https://lh3.googleusercontent.com/d/10mMzx9oXDj1T7AZ9AD17vwcxp9U8GwRv=w2000", label:"Flexible art style"},
+        {id:7, url:"https://lh3.googleusercontent.com/d/1gNTi7Wv8hTZU56ZZOrWDKD6Ey71TrPWT=w2000", label:"Gothic Style"},
+        {id:8, url:"https://lh3.googleusercontent.com/d/1be57KD-u8SjcsjmoKcFS3_qdxxYKDR8B=w2000", label:"Artistic Style"},
 
-        {url:"https://lh3.googleusercontent.com/d/1s4wB7Au1SZlRF_uti4v-n31wjkUK-dGC=w2000", label:"Infinite Possibilities"},
-        {url:"https://lh3.googleusercontent.com/d/1dWL0Og3uSIkMfVkRPW_-AKRvRlhFpZo9=w2000", label:"Posing and Composition"},
-        {url:"https://lh3.googleusercontent.com/d/1dInkTeE0zGN1VmqWv5LLAT3ON8dy36Fm=w2000", label:"Painting Style"},
-        {url:"https://lh3.googleusercontent.com/d/1xhqicrdY2aw1PrnohEOwbDcrl9bnN_dl=w2000", label:"Hyper-Real social media model"},
+        {id:9, url:"https://lh3.googleusercontent.com/d/1s4wB7Au1SZlRF_uti4v-n31wjkUK-dGC=w2000", label:"Infinite Possibilities"},
+        {id:10, url:"https://lh3.googleusercontent.com/d/1dWL0Og3uSIkMfVkRPW_-AKRvRlhFpZo9=w2000", label:"Posing and Composition"},
+        {id:11, url:"https://lh3.googleusercontent.com/d/1dInkTeE0zGN1VmqWv5LLAT3ON8dy36Fm=w2000", label:"Painting Style"},
+        {id:12, url:"https://lh3.googleusercontent.com/d/1xhqicrdY2aw1PrnohEOwbDcrl9bnN_dl=w2000", label:"Consistent Hyper-Real Model"},
 
-        {url:"https://lh3.googleusercontent.com/d/13srCnNlwYqYGbJjom1t9TpXf5KgOgrIZ=w2000", label:"Hyper-Real Portrait"},
-        {url:"https://lh3.googleusercontent.com/d/1AUSgzf6rOefyIIKHOSXp77mvzh9GqC_y=w2000", label:"A.I. Modeling, ready to wear your designs"},
-        {url:"https://lh3.googleusercontent.com/d/1BwSxH02ROpQR638BM2KW8HWQyUQ81DHR=w2000", label:"Hyper realistic detailing"},
-        {url:"https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w2000", label:"Wedding Theme"},
+        {id:13, url:"https://lh3.googleusercontent.com/d/13srCnNlwYqYGbJjom1t9TpXf5KgOgrIZ=w2000", label:"Hyper-Real Portrait"},
+        {id:14, url:"https://lh3.googleusercontent.com/d/1AUSgzf6rOefyIIKHOSXp77mvzh9GqC_y=w2000", label:"A.I. Modeling, ready to wear your designs"},
+        {id:15, url:"https://lh3.googleusercontent.com/d/1BwSxH02ROpQR638BM2KW8HWQyUQ81DHR=w2000", label:"Hyper realistic detailing"},
+        {id:16, url:"https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w2000", label:"Wedding Theme"},
     ];
 
     function populateGallery() {
-        const grid = document.getElementById('gallery-grid');
+    const grid = document.getElementById('gallery-grid');
+    galleryImages.forEach(src => {
+        const div = document.createElement('div');
+        div.className = "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer";
 
-        galleryImages.forEach(src => {
-            const div = document.createElement('div');
-            div.className = "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer flex items-center justify-center";
+        if (src.id === 12) {
+            div.dataset.galleryId = "12";
 
-            const img = document.createElement('img');
-            img.src = src.url;
-            img.className = "w-full h-full object-cover gallery-img transition-all duration-500 opacity-0";
-            img.alt = "Gallery image";
+            const images = [
+                src.url,
+                "https://lh3.googleusercontent.com/d/13ZRIn8OAmFhbapB6PAfrqiuOB_LZnR-d=w2000",
+                "https://lh3.googleusercontent.com/d/1IGqihykW1LNQaK-BJtGQjP5qvmXIp3aV=w2000",
+                "https://lh3.googleusercontent.com/d/1necOu7IGLNyeAQDNt265SHEYvLumGyPe=w2000"
+            ];
 
-            // Loading spinner
-            const spinner = document.createElement('div');
-            spinner.className = "absolute w-8 h-8 border-4 border-white/40 border-t-white rounded-full animate-spin";
+            images.forEach((url, index) => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = `Gallery image 12 - variant ${index + 1}`;
+                img.className = `gallery-img img-${index + 1} opacity-0`;
+                div.appendChild(img);
 
-            // When image loads
-            img.addEventListener('load', () => {
-                spinner.remove();      // remove spinner
-                img.classList.remove('opacity-0'); // show image
-            });
-
-            // Open modal
-            div.addEventListener('click', () => {
-                openGalleryModal(src.url);
+                // Make first image start visible immediately (animation will take over)
+                if (index === 0) {
+                    img.style.opacity = '1';  // or remove opacity-0 class here
+                }
             });
 
             const overlay = document.createElement('div');
-            overlay.className = "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6";
-
+            overlay.className = "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6 z-10 pointer-events-none";
             const text = document.createElement('div');
             text.className = "text-xs uppercase tracking-widest";
-            text.textContent = src.label + " • Click to enlarge";
-
+            text.textContent = src.label + " • 4 variants • Auto-transition";
             overlay.appendChild(text);
-            div.appendChild(spinner); // add spinner first
-            div.appendChild(img);
             div.appendChild(overlay);
 
-            grid.appendChild(div);
+        } else {
+            // ── NORMAL IMAGES ──
+            const img = document.createElement('img');
+            img.src = src.url;
+            img.alt = "Gallery image";
+            img.className = "w-full h-full object-cover gallery-img transition-all duration-500 opacity-0";
+
+            // ← Key fix: fade in when loaded
+            img.addEventListener('load', () => {
+                img.classList.remove('opacity-0');
+            });
+
+            // Fallback: if already cached, force show
+            if (img.complete) {
+                img.classList.remove('opacity-0');
+            }
+
+            div.appendChild(img);
+
+            const overlay = document.createElement('div');
+            overlay.className = "absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all flex items-end p-6";
+            const text = document.createElement('div');
+            text.className = "text-xs uppercase tracking-widest";
+            text.textContent = `${src.label} • Click to enlarge`;
+            overlay.appendChild(text);
+            div.appendChild(overlay);
+        }
+
+        // Common click handler
+        div.addEventListener('click', () => {
+            openGalleryModal(src.url);
         });
-    }
+
+        grid.appendChild(div);
+    });
+}
 
     // Modal functions
     function openGalleryModal(src) {
