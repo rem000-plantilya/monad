@@ -357,7 +357,7 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
-                    <audio id="audio-1" class="hidden" src="./src/Monad.mp3" autoplay="true"></audio>
+                    <audio id="audio-1" class="hidden" src="./src/Monad.mp3"></audio>
                     <div class="h-1 bg-white/10 rounded-full mt-6 relative">
                         <div class="absolute left-0 top-0 h-full bg-cyan-400 w-1/3 rounded-full"></div>
                     </div>
@@ -702,24 +702,25 @@ Today, I'm driven to harness advanced AI to deliver hyper-realistic results that
     <script>
     // Gallery images (unchanged)
     const galleryImages = [
-        "https://lh3.googleusercontent.com/d/10iyrOG69jypDmZwr784IOomhdnDKsPUI=w2000",
-        "https://lh3.googleusercontent.com/d/1a-SlFZI3qejs5iJkAU1GbSTY3qTzHvKI=w2000",
-        "https://lh3.googleusercontent.com/d/1Du2cNKOQYnkNMd-b4oW87G68O_-3CBur=w2000",
-        "https://lh3.googleusercontent.com/d/1bYVle8MtzMinvG6xGWosVGr4etN62k0X=w2000",
-        "https://lh3.googleusercontent.com/d/1nw41ixNaRAWaMI4q7RJhMmmPVPdD8GzP=w2000",
-        "https://lh3.googleusercontent.com/d/10mMzx9oXDj1T7AZ9AD17vwcxp9U8GwRv=w2000",
-        "https://lh3.googleusercontent.com/d/1gNTi7Wv8hTZU56ZZOrWDKD6Ey71TrPWT=w2000",
-        "https://lh3.googleusercontent.com/d/1be57KD-u8SjcsjmoKcFS3_qdxxYKDR8B=w2000",
-        "https://lh3.googleusercontent.com/d/1s4wB7Au1SZlRF_uti4v-n31wjkUK-dGC=w2000",
-        "https://lh3.googleusercontent.com/d/1dWL0Og3uSIkMfVkRPW_-AKRvRlhFpZo9=w2000",
-        "https://lh3.googleusercontent.com/d/1dInkTeE0zGN1VmqWv5LLAT3ON8dy36Fm=w2000",
-        
-        
-        "https://lh3.googleusercontent.com/d/1xhqicrdY2aw1PrnohEOwbDcrl9bnN_dl=w2000",
-        "https://lh3.googleusercontent.com/d/1cr8FWCqK6X0Jh0fGHcXdotUhD22l5eGp=w2000",
-        "https://lh3.googleusercontent.com/d/1AUSgzf6rOefyIIKHOSXp77mvzh9GqC_y=w2000",
-        "https://lh3.googleusercontent.com/d/1BwSxH02ROpQR638BM2KW8HWQyUQ81DHR=w2000",
-        "https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w2000",
+        {url:"https://lh3.googleusercontent.com/d/10iyrOG69jypDmZwr784IOomhdnDKsPUI=w2000", label:"Artistic Style"},
+        {url:"https://lh3.googleusercontent.com/d/1a-SlFZI3qejs5iJkAU1GbSTY3qTzHvKI=w2000", label:"(Image Editing) An Existing Image to Reimagine"},
+        {url:"https://lh3.googleusercontent.com/d/1Du2cNKOQYnkNMd-b4oW87G68O_-3CBur=w2000", label:"Hyper-Real Photography"},
+        {url:"https://lh3.googleusercontent.com/d/1bYVle8MtzMinvG6xGWosVGr4etN62k0X=w2000", label:"Glass Flower"},
+
+        {url:"https://lh3.googleusercontent.com/d/1nw41ixNaRAWaMI4q7RJhMmmPVPdD8GzP=w2000", label:"(Image Editing) Reimagine an Existing Image"},
+        {url:"https://lh3.googleusercontent.com/d/10mMzx9oXDj1T7AZ9AD17vwcxp9U8GwRv=w2000", label:"Flexible art style"},
+        {url:"https://lh3.googleusercontent.com/d/1gNTi7Wv8hTZU56ZZOrWDKD6Ey71TrPWT=w2000", label:"Gothic Style"},
+        {url:"https://lh3.googleusercontent.com/d/1be57KD-u8SjcsjmoKcFS3_qdxxYKDR8B=w2000", label:"Artistic Style"},
+
+        {url:"https://lh3.googleusercontent.com/d/1s4wB7Au1SZlRF_uti4v-n31wjkUK-dGC=w2000", label:"Infinite Possibilities"},
+        {url:"https://lh3.googleusercontent.com/d/1dWL0Og3uSIkMfVkRPW_-AKRvRlhFpZo9=w2000", label:"Posing and Composition"},
+        {url:"https://lh3.googleusercontent.com/d/1dInkTeE0zGN1VmqWv5LLAT3ON8dy36Fm=w2000", label:"Painting Style"},
+        {url:"https://lh3.googleusercontent.com/d/1xhqicrdY2aw1PrnohEOwbDcrl9bnN_dl=w2000", label:"Hyper-Real social media model"},
+
+        {url:"https://lh3.googleusercontent.com/d/13srCnNlwYqYGbJjom1t9TpXf5KgOgrIZ=w2000", label:"Hyper-Real Portrait"},
+        {url:"https://lh3.googleusercontent.com/d/1AUSgzf6rOefyIIKHOSXp77mvzh9GqC_y=w2000", label:"A.I. Modeling, ready to wear your designs"},
+        {url:"https://lh3.googleusercontent.com/d/1BwSxH02ROpQR638BM2KW8HWQyUQ81DHR=w2000", label:"Hyper realistic detailing"},
+        {url:"https://lh3.googleusercontent.com/d/15RJwgHiBMraF4-ak-5jorTEHENbfdgKQ=w2000", label:"Wedding Theme"},
     ];
 
     function populateGallery() {
@@ -730,7 +731,7 @@ Today, I'm driven to harness advanced AI to deliver hyper-realistic results that
             div.className = "relative overflow-hidden rounded-3xl aspect-[4/5] group cursor-pointer flex items-center justify-center";
 
             const img = document.createElement('img');
-            img.src = src;
+            img.src = src.url;
             img.className = "w-full h-full object-cover gallery-img transition-all duration-500 opacity-0";
             img.alt = "Gallery image";
 
@@ -746,7 +747,7 @@ Today, I'm driven to harness advanced AI to deliver hyper-realistic results that
 
             // Open modal
             div.addEventListener('click', () => {
-                openGalleryModal(src);
+                openGalleryModal(src.url);
             });
 
             const overlay = document.createElement('div');
@@ -754,7 +755,7 @@ Today, I'm driven to harness advanced AI to deliver hyper-realistic results that
 
             const text = document.createElement('div');
             text.className = "text-xs uppercase tracking-widest";
-            text.textContent = "4K • Hyper-Real • Click to enlarge";
+            text.textContent = src.label + " • Click to enlarge";
 
             overlay.appendChild(text);
             div.appendChild(spinner); // add spinner first
