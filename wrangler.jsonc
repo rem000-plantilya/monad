@@ -1,5 +1,5 @@
 {
-  "name": "cloudflare-worker",              // ← Change this to match your actual Worker name in the Cloudflare dashboard (very important – case-sensitive!)
+  "name": "monad",              // ← Change this to match your actual Worker name in the Cloudflare dashboard (very important – case-sensitive!)
   "compatibility_date": "2026-03-16",       // Use a recent date
   "assets": {
     "directory": "."                        // Serve everything from the repo root
